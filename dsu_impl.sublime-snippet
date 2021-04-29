@@ -1,0 +1,18 @@
+<snippet>
+	<content><![CDATA[
+struct dsu{    
+    vector <int> p;
+    dsu(int n){p=vector<int>(n,-1);}
+    void unite(int u,int v){
+        u=root(u);v=root(v);
+        if(u!=v){p[u]+=p[v];p[v]=u;}
+    }
+    int root(int x){if(p[x]<0)return x;p[x]=root(p[x]);return p[x];}
+    bool check(int u,int v){return (root(u)==root(v));}
+};
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>dsu</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
