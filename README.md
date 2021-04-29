@@ -1,2 +1,2 @@
 # subl_templates
-c++ snippets i usually use for cp.
+c++ snippets I usually use for cp.
