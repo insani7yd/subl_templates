@@ -1,19 +1,16 @@
 <snippet>
 	<content><![CDATA[
-vector<bool> vs(n,0);  
-function <void(int)> dfs = [&](int r){
-    vs[r]=1;
-	for(auto i: v[r]){
-	    if(!vs[i]){
-	        ${1:}
-	    }
-	}
-	return;
+vector<int> sbtr(n,1);
+function <void(int)> sub = [&](int r){
+    for(auto i: v[r]){
+        sub(i);
+        sbtr[r]+=sbtr[i];
+    }
+    return;
 };
-dfs(0);
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>dfs1</tabTrigger>
+	<tabTrigger>sbtree</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<!-- <scope>source.python</scope> -->
 </snippet>

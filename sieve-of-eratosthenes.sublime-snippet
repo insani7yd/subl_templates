@@ -1,19 +1,22 @@
 <snippet>
 	<content><![CDATA[
-vector<bool> vs(n,0);  
-function <void(int)> dfs = [&](int r){
-    vs[r]=1;
-	for(auto i: v[r]){
-	    if(!vs[i]){
-	        ${1:}
-	    }
+vector<int> primes;
+
+void sieve(){
+	int N = 2e6+47;
+    bools a[N+1]={0};
+	for(int i=2;i<N+1;i++){
+		if(!a[i]) {
+			primes.pb(i);
+			for(int j=i+i;j<N+1;j+=i){
+				a[j]=1;
+			}
+		}
 	}
-	return;
-};
-dfs(0);
+}
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>dfs1</tabTrigger>
+	<tabTrigger>sieve</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<!-- <scope>source.python</scope> -->
 </snippet>

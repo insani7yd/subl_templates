@@ -1,0 +1,30 @@
+<snippet>
+	<content><![CDATA[
+template<int N> struct fenw{
+    vector<ll> t;
+    fenw(){
+        t=vector<ll>(N+1,0ll);
+    }
+    void update(int p,ll x){
+        for(;p<=N;p|=(p+1)){
+            t[p]+=x;
+        }
+    }
+    ll get(int p){
+        ll ret=0;
+        for(;p>0;--p){
+            ret+=t[p];
+            p&=(p+1);
+        }
+        return ret;
+    }
+    ll get(int l,int r){
+        return get(r)-get(l-1);
+    }
+};
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>fen</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
