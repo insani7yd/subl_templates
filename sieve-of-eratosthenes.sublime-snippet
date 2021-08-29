@@ -2,9 +2,8 @@
 	<content><![CDATA[
 vector<int> primes;
 
-void sieve(){
-	int N = 2e6+47;
-    bools a[N+1]={0};
+void sieve(int n){
+    bool a[n+1]={0};
 	for(int i=2;i<N+1;i++){
 		if(!a[i]) {
 			primes.pb(i);

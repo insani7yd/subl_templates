@@ -1,0 +1,19 @@
+<snippet>
+	<content><![CDATA[
+vector<pair<int> > mark(n,mp(-1,0));int c=-1;  
+function <void(int)> flatr = [&](int r){
+    mark[r].fs=++c;
+    for(auto i: v[r]){
+        if(mark[i]<0){
+            flatr(i);
+        }
+    }
+    mark[r].sn=c;
+    return;
+};
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>flatr</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

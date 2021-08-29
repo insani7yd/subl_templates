@@ -1,30 +1,34 @@
 <snippet>
 	<content><![CDATA[
-template<int N> struct fenw{
-    vector<ll> t;
-    fenw(){
-        t=vector<ll>(N+1,0ll);
+template <typename T> struct fenwik {
+    vector<T> tr;int n;
+    fenwik(int nf){
+        n=nf;tr.assign(nf,T(0));
     }
-    void update(int p,ll x){
-        for(;p<=N;p|=(p+1)){
-            t[p]+=x;
+
+    fenwik(vector<int> a) : fenwik(a.size()){
+        for(int i=0;i<a.size();i++){
+            add(i,T(a[i]));
         }
     }
-    ll get(int p){
-        ll ret=0;
-        for(;p>0;--p){
-            ret+=t[p];
-            p&=(p+1);
+
+    T sum(int r) {
+        T ret = 0;
+        for(;r>=0;r=(r&(r+1))-1){
+            ret+=tr[r];
         }
         return ret;
     }
-    ll get(int l,int r){
-        return get(r)-get(l-1);
+
+    void add(int r,T x) {
+        for (;r<n;r=r|(r+1)){
+            tr[r]+=x;
+        }
     }
 };
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>fen</tabTrigger>
+	<tabTrigger>fenw</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<!-- <scope>source.python</scope> -->
 </snippet>

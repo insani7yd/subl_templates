@@ -19,19 +19,30 @@ template<typename T, typename U> static inline void amax(T &x, U y){if (x < y)x 
 const int mod = 1e9+7;
  
 //void precomp(){}
- 
+
 void solve(){
-	${1:}
+    ${1:}
 }
- 
+
 int main(){
-	ios_base::sync_with_stdio(false); 
-	cin.tie(NULL);cout.tie(NULL);
-    
+    ios_base::sync_with_stdio(false); 
+    cin.tie(NULL);cout.tie(NULL);
+
     //precomp();
+
+    //freopen("input.txt", "r", stdin);
+    //freopen("output.txt", "w", stdout);
+
+    // time_t start,end;
+    // time(&start);
     
-    ${2:}int tc;cin>>tc;while(tc--)
+    int tc;cin>>tc;while(tc--)
     solve();
+    
+    // time(&end);
+
+    // double time_taken = double(end-start);
+    // cout<<"Time taken by program is : "<<fixed<<time_taken<<setprecision(5)<<" sec.\n";
     
     return 0;
 }

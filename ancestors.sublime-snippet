@@ -1,0 +1,64 @@
+<snippet>
+	<content><![CDATA[
+vector<vector<int> > anc(n,vector<int>(24,-1)); 
+function <void(int)> pr = [&](int r){
+    for(auto i: v[r]){
+        if(anc[i]<0){
+            anc[i][0]=r;
+            pr(i);
+        }
+    }
+    return;
+};
+anc[0][0]=0;pr(0);anc[0][0]=-1;
+		
+for(int i=1;i<24;i++){
+    for(int j=0;j<n;j++){
+        if(anc[j][i-1]<0)continue;
+        anc[j][i]=anc[anc[j][i-1]][i-1];
+    }
+}
+
+vector<pair<int> > mark(n,mp(-1,0));int c=-1;  
+function <void(int)> flatr = [&](int r){
+    mark[r].fs=++c;
+    for(auto i: v[r]){
+        if(mark[i]<0){
+            flatr(i);
+        }
+    }
+    mark[r].sn=c;
+    return;
+};
+
+function<bool(int a,int b)> isanc = [&](int& a,int& b){
+    if(mark[a].sn>=mark[b].fs)return 1;
+    else return 0;
+};
+
+function<int(int,int)> kanc = [&](int& a,int& k){
+    int i=0;
+    while(k){
+        if(k&1){a=anc[a][i];}
+        k>>=1;i++;
+    }
+    return a;
+};
+
+function<int(int,int)> lca = [&](int& a,int& b){
+    if(isanc(a,b))return a;
+    else if(isanc(b,a))return b;
+    int i=24;
+    while(i>=0){
+        if(anc[a][i]>=0){
+            if(!isanc(anc[a][i],b))a=anc[a][i];
+        }
+        i--;
+    }
+};
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>anc</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

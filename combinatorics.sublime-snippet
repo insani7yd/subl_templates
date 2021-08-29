@@ -12,7 +12,12 @@ void precomp(){
  
 int P(int n, int k){
 	if(n<k)return 0;
-    return div(fact[n], fact[n - k]);
+    return divide(fact[n], fact[n - k]);
+}
+
+int C(int n, int k){
+	if(n<k)return 0;
+	return divide(fact[n],mul(fact[k],fact[n-k]));
 }
 
 ]]></content>

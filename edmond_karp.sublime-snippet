@@ -1,0 +1,44 @@
+<snippet>
+	<content><![CDATA[
+ll mxflow = 0;
+ 
+while(1){
+   	queue<int> q;vector<int> prt(n,-1);
+   	q.push(s);bool f = 0;prt[s]=s;	    
+    	
+   	while(!q.empty()){
+   		int x = q.front();
+   		q.pop();
+   		for(auto i: v[x]){
+   		    if(cap[x][i]>0 && prt[i]==-1){
+   		        q.push(i);
+   		        prt[i]=x;
+  		        if(i==t)f=1;
+   		    }
+  		}
+   		if(f)break;
+   	}
+   	
+   	if(f){
+   		int i=t;ll bottleneck=inf;
+   		while(i!=s){
+   			amin(bottleneck,cap[prt[i]][i]);
+   			i=prt[i];
+   		}
+   		i=t;
+   		while(i!=s){
+   			cap[prt[i]][i]-=bottleneck;
+   			cap[i][prt[i]]+=bottleneck;
+    		i=prt[i];
+    	}
+  		mxflow += bottleneck;
+   	}
+ 
+    else break;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>edk</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
