@@ -1,27 +1,33 @@
 <snippet>
 	<content><![CDATA[
-vector<ll> djkst(vector<vector<pair<int,ll> > > &g){
+vector<ll> djkst(vector<vector<pair<int,ll> > > &g, int &src){
     int n=g.size();
     set<pair<ll,int> > s;vector<bool> vs(n,0);
-    vector<ll> d(n,inf);d[0]=0;
+    
+    // define inf
+    vector<ll> d(n,inf);d[src]=0;
     //vector<int> pr(n);iota(pr.begin(),pr.end(),0);  //parent array to obtain path
+    
     for(int i=0;i<n;i++){
         s.insert(mp(d[i],i));
     }
+    
     while(s.size()){
-        auto i = s.begin();
-        if(i->fs==inf)break;
-        for(auto j: g[i->sn]){
-            if(vs[j.fs])continue;
-            if(d[j.fs]>i->fs+j.sn){
-                s.erase(mp(d[j.fs],j.fs));
-                s.insert(mp(i->fs+j.sn,j.fs));
-                d[j.fs]=i->fs+j.sn;
+        auto [di,i] = *s.begin();
+        if(di == inf)break;
+        
+        for(auto [j,dj]: g[i]){
+            if(vs[j])
+                continue;
+            else if(d[j] > di+dj) {
+                s.erase(make_pair(d[j],j));
+                s.insert(make_pair(di+dj,j));
+                d[j] = di+dj;
                 //pr[j.fs]=i->sn;      //for path formation
             }
         }
-        vs[i->sn]=1;
-        s.erase(*i);
+        vs[i]=1;
+        s.erase(make_pair(di,i));
     }
     return d;
     //return pr;

@@ -2,6 +2,7 @@
 	<content><![CDATA[
 #include<bits/stdc++.h>
 using namespace std;
+
 #define pb emplace_back
 #define mp make_pair
 #define fs first
@@ -10,6 +11,7 @@ using namespace std;
 #define vec(T) vector<T>
 #define printv(v) for(auto i: v)cout<<i<<" ";cout<<"\n";
 #define scanv(v) for(auto& i: v)cin>>i;
+#define ast(v,n) assert(v.size()==n)
  
 typedef long long int ll;
  
@@ -20,7 +22,7 @@ const int mod = 1e9+7;
  
 //void precomp(){}
 
-void solve(){
+void solve(int test){
     ${1:}
 }
 
@@ -30,20 +32,11 @@ int main(){
 
     //precomp();
 
-    //freopen("input.txt", "r", stdin);
-    //freopen("output.txt", "w", stdout);
-
-    // time_t start,end;
-    // time(&start);
-    
-    int tc;cin>>tc;while(tc--)
-    solve();
-    
-    // time(&end);
-
-    // double time_taken = double(end-start);
-    // cout<<"Time taken by program is : "<<fixed<<time_taken<<setprecision(5)<<" sec.\n";
-    
+    int tc=1;
+    cin>>tc;
+    while(tc--){
+        solve(tc);
+    }
     return 0;
 }
 ]]></content>

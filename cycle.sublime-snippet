@@ -1,0 +1,65 @@
+<snippet>
+	<content><![CDATA[
+vector<int> color;
+vector<int> parent;
+// vector<int> srt;  // for topological sort
+int cycle_start, cycle_end;
+
+color.assign(n,-1);
+parent.assign(n,-1);
+cycle_start = -1;
+
+function<bool(int)> dfs = [&](int r) {
+    color[r]++;
+    for(auto i: g[r]) {
+        if(color[i]==-1) {
+            parent[i] = r;
+            if(dfs(i)) {
+                return true;
+            }
+        } else if(color[i]==0) {
+            cycle_end = r;
+            cycle_start = i;
+            return true;
+        }
+    }
+    color[r]++;
+    // srt.emplace_back(r);  // topological sort
+    return false;
+};
+
+function<void()> find_cycle = [&]() {
+    color.assign(n,-1);
+    parent.assign(n,-1);
+    cycle_start = -1;
+
+    for(int v = 0; v < n; v++) {
+        if(color[v] == -1 && dfs(v))break;
+    }
+
+    if(cycle_start == -1) {
+        cout << "Acyclic" << endl;
+    } else {
+        vector<int> cycle;
+        cycle.push_back(cycle_start);
+        for (int v = cycle_end; v != cycle_start; v = parent[v])
+            cycle.push_back(v);
+        cycle.push_back(cycle_start);
+        reverse(cycle.begin(), cycle.end());
+
+        cout << "Cycle found: ";
+        for (int v : cycle)
+            cout << v << " ";
+        cout << endl;
+    }
+
+    // if(srt.size()!=0) {
+    //  reverse(srt.begin(),srt.end());
+    // }
+};
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>cycle</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

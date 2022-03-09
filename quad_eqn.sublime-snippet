@@ -1,19 +1,14 @@
 <snippet>
 	<content><![CDATA[
-vector<bool> vs(n,0);  
-function <void(int)> dfs = [&](int r){
-    vs[r]=1;
-	for(auto i: v[r]){
-	    if(!vs[i]){
-	        ${1:}
-	    }
-	}
-	return;
-};
-dfs(0);
+pair<double, double> qe(double a,double b,double c){
+	double d4 = double(4), d2 = double(2);
+	double D = sqrt(b*b-d4*a*c);
+	pair<double, double> res = mp((D-b)(d2*a),-(D+b)/(d2*a));
+	return res;
+}
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>dfs1</tabTrigger>
+	<tabTrigger>quade</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<!-- <scope>source.python</scope> -->
 </snippet>
